@@ -20,6 +20,18 @@ public class Delegation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int delegationId;
     private String description;
+
+    public Delegation(Timestamp dateTimeStart, Timestamp dateTimeStop) {
+        this.dateTimeStart = dateTimeStart;
+        this.dateTimeStop = dateTimeStop;
+    }
+
+    public Delegation(Timestamp dateTimeStart, Timestamp dateTimeStop, User user) {
+        this.dateTimeStart = dateTimeStart;
+        this.dateTimeStop = dateTimeStop;
+        this.user = user;
+    }
+
     @NotNull
     private Timestamp dateTimeStart;
     @NotNull
@@ -38,4 +50,6 @@ public class Delegation {
     private double otherOutlayPrice;
 
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 }
